@@ -83,24 +83,36 @@ body {
     <p>Os seletores definem quais elementos receberão estilo.</p>
 
     <ul>
-        <li><b>Tipo:</b> h1, p, body</li>
-        <li><b>Classe:</b> .classe</li>
-        <li><b>ID:</b> #id</li>
-        <li><b>Universal:</b> *</li>
-        <li><b>Atributo:</b> [type="text"]</li>
+        <li><b>Tipo:</b> h1, p, body -&gt; todos o elementos da tipo selecionado</li>
+        <li><b>Classe:</b> .classe -> baseado em uma classe de Css</li>
+        <li><b>ID:</b> #id -> seleciona os que tem ID correspondente</li>
+        <li><b>Universal:</b>* -> seleciona todos</li>
+        <li><b>Atributo:</b> [type="text"] -> seleciona baseado no valor dos atributos</li>
     </ul>
 
 <pre>
+Tipo:
+
 h1 {
     color: green;
 }
+
+ID:
 
 #titulo {
     color: blue;
 }
 
+Classes:
+
 .texto {
     font-size: 20px;
+}
+
+Atributo:
+
+[type= "text"]{
+	color: green;
 }
 </pre>
 
@@ -122,6 +134,24 @@ h1 {
 
     <p>
         Nesse caso, a cor verde será aplicada porque foi declarada depois.
+    </p>
+    <p>
+	O seletor mais específico ganha a preferência em Css.
+    </p>
+<pre>
+h1 {
+	color: green;
+}
+h1.chapter {
+	color: orange;
+}
+*{
+	color: blue;
+	background-color: yellow;
+}
+</pre>
+    <p>
+	Nesse caso o h1 ganha preferência de *, pois ele é mais específico.
     </p>
 
     <h3>2.4 Herança</h3>
@@ -153,11 +183,32 @@ p {
 
     <ul>
         <li>Nome da cor</li>
-        <li>RGB</li>
-        <li>Hexadecimal</li>
-        <li>RGBA</li>
-        <li>HSL</li>
+        <li>RGB -> escolhe números de 0 a 255 que definem a composição de vermelho, verde e azul</li>
+        <li>Hexadecimal ->define o valor com número hexadecimais(EX:#
+FFFF00)</li>
+        <li>RGBA -> quarto número  que define quâo transparente é (de 0.0 a 1.0)</li>
+        <li>HSL -> pode definir saturação, opacidade iluminação com números de 0 a 360</li>
     </ul>
+<pre>
+h1 {
+	color: darkblue;
+}
+h2 {
+	color: #ffa500;
+}
+p{
+	color: rgb(169, 169, 169);
+}
+body {
+	background-color: grey;
+}
+11 {
+	background-color: #ffa500;
+}
+p{
+	background-color: rgb(169, 169, 169);
+}
+</pre>
 
     <h3>3.2 Fontes</h3>
 
@@ -170,19 +221,51 @@ body {
     <p>Tipos comuns:</p>
 
     <ul>
-        <li>serif</li>
-        <li>sans-serif</li>
-        <li>monospace</li>
-        <li>cursive</li>
+        <li>serif -> fonte com pequenos ganchos nos traços principais</li>
+        <li>sans-serif -> fonte sem sem ganchos, pega a principal do sistema(Ex: Arial)</li>
+        <li>monospace -> fonte onde todos possuem a mesma largura</li>
+        <li>cursive ->Fonte cursiva ou itálica, ou seja, uma fonte que se assemelha à escrita à mão. </li>
+	<li>fantasy -> família de fontes genérica usada para estilos decorativos, artísticos ou temáticos.
     </ul>
+<pre>
+
+body {
+	font-family: 'Times New Roman', Times, serif;
+}
+h1, h2 {
+	font-family: Arial, sans-serif;
+}
+ul li {
+	font-family: 'Courier New', Courier, monospace;
+}
+.author {
+	font-family: Verdana;
+}
+.date {
+	font-family: 'Courier New', Courier, monospace;
+}
+</pre>
 
     <h3>3.3 Tamanho e estilo da fonte</h3>
 
 <pre>
+font size de 14 pixels:
+
+body {
+    font-size: 14px;
+}
+
+150% do tamanho normal da fonte:
 h1 {
     font-size: 150%;
 }
+1,5 vezes a largura da letra m:
 
+h2 {
+font-size: 1.5em;
+}
+
+define fonte como itálico e negrito
 .introducao {
     font-style: italic;
     font-weight: bold;
@@ -192,11 +275,11 @@ h1 {
     <h3>3.4 Outras formatações</h3>
 
     <ul>
-        <li>text-transform</li>
-        <li>text-decoration</li>
-        <li>text-align</li>
-        <li>line-height</li>
-        <li>letter-spacing</li>
+        <li>text-transform ->Você pode usar a propriedade text-transform para alternar entre diferentes notações. </li>
+        <li>text-decoration ->a Abreviatura usada para adicionar linhas visuais, como sublinhados, sobrelinhados e tachados, ao texto.</li>
+        <li>text-align ->usada para controlar o alinhamento horizontal do conteúdo inline (como texto ou imagens) dentro de um elemento de bloco. </li>
+        <li>line-height ->define a altura </li>
+        <li>letter-spacing -> define o espaço entre as letras</li>
     </ul>
 
 <pre>
@@ -218,11 +301,11 @@ a:hover {
     <p>Pseudo-classes importantes:</p>
 
     <ul>
-        <li>:link</li>
-        <li>:visited</li>
-        <li>:hover</li>
-        <li>:active</li>
-        <li>:focus</li>
+        <li>:link -> Estiliza links que ainda não foram clicados ou visitados pelo usuário.</li>
+        <li>:visited ->  Modifica a aparência de links que o usuário já acessou anteriormente.</li>
+        <li>:hover ->Ativa os estilos quando o usuário passa o cursor do mouse sobre o elemento.</li>
+        <li>:active ->Aplica a estilização no exato momento em que o elemento é clicado.</li>
+        <li>:focus ->Destaca o elemento quando ele recebe seleção via teclado ou clique.</li>
     </ul>
 
     <h2>4.0 Listas e Tabelas</h2>
@@ -238,10 +321,10 @@ ul li {
     <p>Valores comuns:</p>
 
     <ul>
-        <li>disc</li>
-        <li>circle</li>
-        <li>square</li>
-        <li>none</li>
+        <li>disc -> Define o marcador da lista como um círculo preenchido (padrão do navegador).</li>
+        <li>circle -> Transforma o marcador da lista em um círculo vazado com contorno fino.</li>
+        <li>square ->Altera o marcador da lista para o formato de um quadrado preenchido.</li>
+        <li>none ->  Remove completamente qualquer marcador visual da lista, ocultando os pontos.</li>
     </ul>
 
     <h3>4.2 Listas ordenadas</h3>
@@ -255,9 +338,9 @@ ol li {
     <p>Também é possível usar:</p>
 
     <ul>
-        <li>decimal</li>
-        <li>upper-alpha</li>
-        <li>lower-alpha</li>
+        <li>decimal -> Exibe a lista numerada com algarismos arábicos tradicionais começando do 1 (padrão).</li>
+        <li>upper-alpha -> Ordena a lista utilizando letras maiúsculas da A até a Z.</li>
+        <li>lower-alpha ->  Organiza a lista utilizando letras minúsculas da a até a z.</li>
     </ul>
 
     <h3>4.3 Imagens em listas</h3>
@@ -290,11 +373,11 @@ th, td {
     <h3>5.1 Tipos de posicionamento</h3>
 
     <ul>
-        <li>static</li>
-        <li>relative</li>
-        <li>absolute</li>
-        <li>fixed</li>
-        <li>sticky</li>
+        <li>static -> Posicionamento padrão que segue o fluxo natural de renderização da página HTML.</li>
+        <li>relative -> Move o elemento com base em si mesmo sem alterar o fluxo dos outros.</li>
+        <li>absolute -> Posiciona o elemento em relação ao ancestral mais próximo que não seja estático.</li>
+        <li>fixed -> Fixa o elemento em relação à tela do navegador, ignorando a rolagem da página.</li>
+        <li>sticky ->  Alterna entre relativo e fixo dependendo da posição de rolagem do usuário na tela.</li>
     </ul>
 
 <pre>
@@ -342,23 +425,6 @@ input {
 
     <p>
         O Grid Layout organiza elementos em linhas e colunas, sendo ideal para layouts complexos.
-    </p>
-
-    <h2>6.0 Observações dos testes</h2>
-
-    <p>
-        Os códigos das figuras foram revisados e alguns erros do PDF precisaram ser corrigidos para funcionar corretamente:
-    </p>
-
-    <ul>
-        <li>Fechamento incorreto da tag &lt;style&gt;</li>
-        <li>Uso errado de &lt;/br&gt; ao invés de &lt;br&gt;</li>
-        <li>Tag &lt;meta charset&gt; fora da posição correta</li>
-        <li>Ponto extra após algumas tags HTML</li>
-    </ul>
-
-    <p>
-        Após as correções, os exemplos HTML e CSS funcionaram normalmente.
     </p>
 
 </body>
