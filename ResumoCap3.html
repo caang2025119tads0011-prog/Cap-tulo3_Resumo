@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "Meu_Css.css"/>		
+    <title>Resumo Capítulo 3 - CSS</title>
+</head>
+<body>
+
+    <center><h1>Capítulo 3 - CSS</h1></center>
+    <br>
+
+    <h2>1.0 CSS</h2>
+    <p>
+        Linguagem de estilo usada para controlar a aparência dos elementos HTML.
+        Permite alterar fontes, cores, listas, formulários, tabelas e layouts.
+    </p>
+
+    <h2>2.0 Princípio do CSS</h2>
+    <p>
+        Uma regra CSS possui:
+    </p>
+
+<pre>
+seletor {
+    propriedade: valor;
+}
+</pre>
+
+    <p>Exemplo:</p>
+
+<pre>
+body {
+    font-family: Arial;
+}
+</pre>
+
+    <h3>2.1 Incluindo CSS em HTML</h3>
+
+    <p>Existem três formas principais:</p>
+
+    <ul>
+        <li><b>External CSS</b> → arquivo separado .css(no head)</li>
+        <li><b>Internal CSS</b> → uso da tag &lt;style&gt;(no head)</li>
+        <li><b>Inline CSS</b> → CSS direto no elemento HTML</li>
+    </ul>
+    <p>Exemplo de External:</p></br>
+    <pre>&lt;link href="css/styles.css" type="text/css" rel="stylesheet" /&gt;</pre></br>
+    <p>Exemplo de Internal:</p></br>
+    <pre>
+&lt;style type="text/css"&gt;
+   body {
+	font-family: Arial;
+	background-color: lightblue;
+   }
+   h1 {
+	color: darkblue;
+   }
+   h2 {
+	text-transform: uppercase;
+   }
+&lt;style&gt;
+   </pre></br>
+   <p>Exemplo de Inline:</p></br>
+   <pre>
+	&lt;body style="font-family: Arial; background-color: lightblue;"&gt;
+		&lt;h1 style="color: darkblue;"&gt;My first web page&lt;/h1&gt;
+		&lt;p&gt;This is a paragraph.&lt;/p&gt;
+		&lt;h2 style="text-transform: uppercase;"&gt;
+		This is a subheading
+		&lt;/h2&gt;
+		&lt;p&gt;
+		Here is another paragraph with &lt;i&gt;italics&lt;/i&gt; and
+		&lt;b&gt;bold text&lt;/b&gt;.
+		&lt;/p&gt;
+		&lt;h2 style="text-transform: uppercase;"&gt;
+		This is another subheading
+		&lt;/h2&gt;
+	&lt;/body&gt;
+    </pre>
+    <h3>2.2 Seletores</h3>
+
+    <p>Os seletores definem quais elementos receberão estilo.</p>
+
+    <ul>
+        <li><b>Tipo:</b> h1, p, body</li>
+        <li><b>Classe:</b> .classe</li>
+        <li><b>ID:</b> #id</li>
+        <li><b>Universal:</b> *</li>
+        <li><b>Atributo:</b> [type="text"]</li>
+    </ul>
+
+<pre>
+h1 {
+    color: green;
+}
+
+#titulo {
+    color: blue;
+}
+
+.texto {
+    font-size: 20px;
+}
+</pre>
+
+    <h3>2.3 Cascata e Especificidade</h3>
+
+    <p>
+        O CSS funciona em cascata. Regras mais específicas possuem prioridade.
+    </p>
+
+<pre>
+h1 {
+    color: blue;
+}
+
+h1 {
+    color: green;
+}
+</pre>
+
+    <p>
+        Nesse caso, a cor verde será aplicada porque foi declarada depois.
+    </p>
+
+    <h3>2.4 Herança</h3>
+
+    <p>
+        Algumas propriedades são herdadas pelos elementos filhos, como:
+    </p>
+
+    <ul>
+        <li>color</li>
+        <li>font-family</li>
+    </ul>
+
+    <h2>3.0 Cores e Formatação de Texto</h2>
+
+    <h3>3.1 Definindo cores</h3>
+
+<pre>
+h1 {
+    color: darkblue;
+}
+
+p {
+    color: rgb(169,169,169);
+}
+</pre>
+
+    <p>Formatos aceitos:</p>
+
+    <ul>
+        <li>Nome da cor</li>
+        <li>RGB</li>
+        <li>Hexadecimal</li>
+        <li>RGBA</li>
+        <li>HSL</li>
+    </ul>
+
+    <h3>3.2 Fontes</h3>
+
+<pre>
+body {
+    font-family: Arial, sans-serif;
+}
+</pre>
+
+    <p>Tipos comuns:</p>
+
+    <ul>
+        <li>serif</li>
+        <li>sans-serif</li>
+        <li>monospace</li>
+        <li>cursive</li>
+    </ul>
+
+    <h3>3.3 Tamanho e estilo da fonte</h3>
+
+<pre>
+h1 {
+    font-size: 150%;
+}
+
+.introducao {
+    font-style: italic;
+    font-weight: bold;
+}
+</pre>
+
+    <h3>3.4 Outras formatações</h3>
+
+    <ul>
+        <li>text-transform</li>
+        <li>text-decoration</li>
+        <li>text-align</li>
+        <li>line-height</li>
+        <li>letter-spacing</li>
+    </ul>
+
+<pre>
+h2 {
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+</pre>
+
+    <h3>3.5 Links</h3>
+
+<pre>
+a:hover {
+    color: black;
+    background-color: orange;
+}
+</pre>
+
+    <p>Pseudo-classes importantes:</p>
+
+    <ul>
+        <li>:link</li>
+        <li>:visited</li>
+        <li>:hover</li>
+        <li>:active</li>
+        <li>:focus</li>
+    </ul>
+
+    <h2>4.0 Listas e Tabelas</h2>
+
+    <h3>4.1 Listas</h3>
+
+<pre>
+ul li {
+    list-style-type: square;
+}
+</pre>
+
+    <p>Valores comuns:</p>
+
+    <ul>
+        <li>disc</li>
+        <li>circle</li>
+        <li>square</li>
+        <li>none</li>
+    </ul>
+
+    <h3>4.2 Listas ordenadas</h3>
+
+<pre>
+ol li {
+    list-style-type: lower-roman;
+}
+</pre>
+
+    <p>Também é possível usar:</p>
+
+    <ul>
+        <li>decimal</li>
+        <li>upper-alpha</li>
+        <li>lower-alpha</li>
+    </ul>
+
+    <h3>4.3 Imagens em listas</h3>
+
+<pre>
+ul li {
+    list-style-image: url("estrela.png");
+}
+</pre>
+
+    <h3>4.4 Tabelas</h3>
+
+<pre>
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+</pre>
+
+    <p>
+        O CSS permite melhorar a aparência das tabelas usando bordas,
+        cores, alinhamento e espaçamento.
+    </p>
+
+    <h2>5.0 Sistemas de Layout</h2>
+
+    <h3>5.1 Tipos de posicionamento</h3>
+
+    <ul>
+        <li>static</li>
+        <li>relative</li>
+        <li>absolute</li>
+        <li>fixed</li>
+        <li>sticky</li>
+    </ul>
+
+<pre>
+div {
+    position: relative;
+}
+</pre>
+
+    <h3>5.2 Float Layout</h3>
+
+<pre>
+label {
+    float: left;
+}
+
+input {
+    float: left;
+}
+</pre>
+
+    <p>
+        O float foi muito usado para organizar formulários e layouts antigos.
+    </p>
+
+    <h3>5.3 Flexbox</h3>
+
+<pre>
+.form-row {
+    display: flex;
+    justify-content: flex-end;
+}
+</pre>
+
+    <p>
+        O Flexbox facilita alinhamento horizontal e vertical de elementos.
+    </p>
+
+    <h3>5.4 Grid Layout</h3>
+
+<pre>
+.container {
+    display: grid;
+}
+</pre>
+
+    <p>
+        O Grid Layout organiza elementos em linhas e colunas, sendo ideal para layouts complexos.
+    </p>
+
+    <h2>6.0 Observações dos testes</h2>
+
+    <p>
+        Os códigos das figuras foram revisados e alguns erros do PDF precisaram ser corrigidos para funcionar corretamente:
+    </p>
+
+    <ul>
+        <li>Fechamento incorreto da tag &lt;style&gt;</li>
+        <li>Uso errado de &lt;/br&gt; ao invés de &lt;br&gt;</li>
+        <li>Tag &lt;meta charset&gt; fora da posição correta</li>
+        <li>Ponto extra após algumas tags HTML</li>
+    </ul>
+
+    <p>
+        Após as correções, os exemplos HTML e CSS funcionaram normalmente.
+    </p>
+
+</body>
+</html>
