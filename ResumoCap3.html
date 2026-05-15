@@ -40,9 +40,9 @@ body {
     <p>Existem três formas principais:</p>
 
     <ul>
-        <li><b>External CSS</b> → arquivo separado .css(no head)</li>
-        <li><b>Internal CSS</b> → uso da tag &lt;style&gt;(no head)</li>
-        <li><b>Inline CSS</b> → CSS direto no elemento HTML</li>
+        <li><b>External CSS</b> -> arquivo separado .css(no head)</li>
+        <li><b>Internal CSS</b> -> uso da tag &lt;style&gt;(no head)</li>
+        <li><b>Inline CSS</b> -> CSS direto no elemento HTML</li>
     </ul>
     <p>Exemplo de External:</p></br>
     <pre>&lt;link href="css/styles.css" type="text/css" rel="stylesheet" /&gt;</pre></br>
@@ -83,11 +83,17 @@ body {
     <p>Os seletores definem quais elementos receberão estilo.</p>
 
     <ul>
-        <li><b>Tipo:</b> h1, p, body -&gt; todos o elementos da tipo selecionado</li>
-        <li><b>Classe:</b> .classe -> baseado em uma classe de Css</li>
-        <li><b>ID:</b> #id -> seleciona os que tem ID correspondente</li>
-        <li><b>Universal:</b>* -> seleciona todos</li>
-        <li><b>Atributo:</b> [type="text"] -> seleciona baseado no valor dos atributos</li>
+        <li>Tipo: h1, p, body -&gt; todos o elementos da tipo selecionado</li>
+        <li>Classe: .classe -> baseado em uma classe de Css</li>
+        <li>ID: #id -> seleciona os que tem ID correspondente</li>
+        <li>Universal:* -> seleciona todos</li>
+        <li>Atributo: [type="text"] -> seleciona baseado no valor dos atributos</li>
+	<li>Adjacent sibling selectors h1+p -> seleciona o elemento que segue o outro<li>
+	<li>General sibling selectors: h1~p -> Seleciona elementos que seguem
+outro elemento (mas não necessariamente imediatamente).</li>
+	<li>Child selectors: body > ul -> Seleciona elementos que são elementos filhos diretos do outro elemento definido no seletor.</li>
+	<li>Descendant selectors: body ul -> Seleciona elementos que são descendentes do outro elemento definido no seletor (mas não necessariamente elementos filhos diretos).</li>
+	
     </ul>
 
 <pre>
@@ -115,7 +121,17 @@ Atributo:
 	color: green;
 }
 </pre>
+    <p> Tipos de atributos seletores</p>
+    <ul>
+	<li>[attribute~=value]: -> O atributo contém, como seu valor, uma lista da qual um elemento da lista corresponde exatamente ao valor.</li>
+	<li>[attribute|=value]: -> O atributo tem exatamente o valor especificado
+valor, ou o valor foi hifenizado e começa com valor seguido de um hífen.</li>
+	<li>[attribute^=value]: -> O atributo tem um valor que começa com valor.</li>
+	<li> [attribute$=value]: -> O atributo tem um valor que termina com valor.</li>
+	<li>[attribute*=value]: ->O atributo tem um valor que contém o valor pelo menos uma vez.</li>
 
+Um elemento da lista corresponde exatamente a valor.
+    
     <h3>2.3 Cascata e Especificidade</h3>
 
     <p>
@@ -135,6 +151,7 @@ h1 {
     <p>
         Nesse caso, a cor verde será aplicada porque foi declarada depois.
     </p>
+
     <p>
 	O seletor mais específico ganha a preferência em Css.
     </p>
@@ -153,17 +170,35 @@ h1.chapter {
     <p>
 	Nesse caso o h1 ganha preferência de *, pois ele é mais específico.
     </p>
+    <p> Calcular a especifidade: é baseada em 3 valores (0,0,0) inicialmente 0, para adicionar 1 no primeiro precisa ser ID, o segundo precisa ser atributo, classe ou pseudo-classe, já a terceira basta ser um seletor ou pseudo seletor, a única exeção a regra é *.
+    <p>
+<pre>
+* {} /* A=0, B=0, C=0, specificity --> 000 */
+h1 {} /* A=0, B=0, C=1, specificity --> 001 */
+ol li {} /* A=0, B=0, C=2, specificity --> 002 */
+div:first-child {} /* A=0, B=1, C=1, specificity --> 011 */
+a.tests[href] {} /* A=0, B=2, C=1, specificity --> 021 */
+#anchor {} /* A=1, B=0, C=0, specificity --> 100 */
+#chapter p {} /* A=1, B=0, C=1, specificity --> 101 */
+</pre>
 
     <h3>2.4 Herança</h3>
 
     <p>
-        Algumas propriedades são herdadas pelos elementos filhos, como:
+        Algumas propriedades são herdadas pelos elementos filhos, como font-family e color, basta que o elemento sejá o  portador da regra para que seus semelhantes (filhos) herde, essas regras
     </p>
+<pre>
+Ex:
+h1{
+	font-family:Arial
+	color:blue
+}
 
-    <ul>
-        <li>color</li>
-        <li>font-family</li>
-    </ul>
+#agora todos os h1 filhos irão herdar a mesma regra
+</pre>
+<p> sendo a exceção a essa regra border que mexe com células de tabelas</p>
+
+   
 
     <h2>3.0 Cores e Formatação de Texto</h2>
 
@@ -211,7 +246,7 @@ p{
 </pre>
 
     <h3>3.2 Fontes</h3>
-
+    <p> Usa a propriedade font-family</p>
 <pre>
 body {
     font-family: Arial, sans-serif;
@@ -275,11 +310,15 @@ define fonte como itálico e negrito
     <h3>3.4 Outras formatações</h3>
 
     <ul>
-        <li>text-transform ->Você pode usar a propriedade text-transform para alternar entre diferentes notações. </li>
-        <li>text-decoration ->a Abreviatura usada para adicionar linhas visuais, como sublinhados, sobrelinhados e tachados, ao texto.</li>
-        <li>text-align ->usada para controlar o alinhamento horizontal do conteúdo inline (como texto ou imagens) dentro de um elemento de bloco. </li>
-        <li>line-height ->define a altura </li>
-        <li>letter-spacing -> define o espaço entre as letras</li>
+        <li>text-transform ->Você pode usar a propriedade text-transform para alternar entre diferentes notações, com valores uppercase(maiúsculo) e lowercase(minúsculo), além de capitaliza que seleciona a primeira letra de todas as frases e deixa maiúscula. </li>
+        <li>text-decoration ->a Abreviatura usada para adicionar linhas visuais (blink), como sublinhados (underline), sobrelinhados (overline) e tachados(line-through), ao texto.</li>
+        <li>text-align ->usada para controlar o alinhamento horizontal do conteúdo inline (como texto ou imagens) dentro de um elemento de bloco. Valores como alinhamento a esquerda(left value), centro(center), rigth(direita) e justify.  </li>
+	<li>vertical-aling -> usado para alinhamento vertical, pode alinhar com valores top,button or middle
+        <li>line-height -> propriedade que define a altura da linha </li>
+        <li>letter-spacing -> propriedade que define o espaço entre as letras</li>
+	<li>word-spacing -> propriedade que define o espaço entre as palavras</li>
+	<li>text-shadow -> coloca efeito de sombra nas letras.</li>
+	<li>text-intent -> recua a primeira linha do texto.</li>
     </ul>
 
 <pre>
@@ -309,8 +348,10 @@ a:hover {
     </ul>
 
     <h2>4.0 Listas e Tabelas</h2>
-
-    <h3>4.1 Listas</h3>
+    <p>
+	Iremos usar a propriedade list-style-type para especificar a aparência das listas tanto ordenadas como desordenadas.
+    </p>
+    <h3>4.1 Listas Desordenadas</h3>
 
 <pre>
 ul li {
@@ -318,16 +359,18 @@ ul li {
 }
 </pre>
 
-    <p>Valores comuns:</p>
 
+
+    <p> Na desordenada modificamos o ponto preto que é conhecido como bala</p>
+
+	
     <ul>
-        <li>disc -> Define o marcador da lista como um círculo preenchido (padrão do navegador).</li>
-        <li>circle -> Transforma o marcador da lista em um círculo vazado com contorno fino.</li>
-        <li>square ->Altera o marcador da lista para o formato de um quadrado preenchido.</li>
-        <li>none ->  Remove completamente qualquer marcador visual da lista, ocultando os pontos.</li>
+	<li>none -> nenhuma bala é usada.</li>
+	<li>disc -> a bala é um disco preto.</li>
+	<li>circle -> a bala é um circulo branco com bordas pretas.</li>
+	<li>square -> a bala vira um quadrado preto.</li>
     </ul>
-
-    <h3>4.2 Listas ordenadas</h3>
+    <p> Pode usar também list-style position para posicionar a bala, com o valor inside deixa ela dentro da caixa de texto e o overside deixa fora.</p>
 
 <pre>
 ol li {
@@ -335,15 +378,19 @@ ol li {
 }
 </pre>
 
-    <p>Também é possível usar:</p>
+    <p>Nas listas ordenadas modificamos a aparência dos números.</p>
 
     <ul>
-        <li>decimal -> Exibe a lista numerada com algarismos arábicos tradicionais começando do 1 (padrão).</li>
-        <li>upper-alpha -> Ordena a lista utilizando letras maiúsculas da A até a Z.</li>
-        <li>lower-alpha ->  Organiza a lista utilizando letras minúsculas da a até a z.</li>
-    </ul>
-
+	<li>decimal -> Enumeração normal dos números naturais(1234...)</li>
+	<li>decimal-leading-zero -> Os números com 1 digito tem 0 na esquerda (01,02,03,...,09,10,11).</li>
+	<li>lower-alpha -> enumera por meio das letras minúsculas do alfabeto( a,b,c ...)</li>
+	<li>upper-alpha -> enumera por meio das letras maiúsculas do alfabeto( A,B,C ...)</li>
+	<li>lower-roman -> números romanos só que minúsculos(i,ii,iii...)</li>
+	<li>upper-roman ->  números romanos só que maiúsculos(I,II,III...)</li>
+   
+            </ul>
     <h3>4.3 Imagens em listas</h3>
+    <p> Podemos colocar uma imagem no lugar da bala, usando list-style-image, com valor url("caminho do arquivo").
 
 <pre>
 ul li {
@@ -362,6 +409,37 @@ th, td {
     padding: 10px;
 }
 </pre>
+    <p> 
+	Aqui irei mencionar algumas propriedes e pseudo-classes capas de modificar tabelas
+    </p>
+
+    <ul>
+	<li>border -> usado para modificar as bordas em largura(definida por pixels), estilo(solid) e cor(#000000)</li>
+	<li>border-collapse -> usado para controlar a estrutura e exibição de bordas na tela, pode "colapsar" as bordas e fazer a células compartilharem a mesma borda.</li>
+	<li>padding -> usada para definir o espaço existente entre a contente e a células e suas bordas.</li>
+	<li>:first-child -> pega todos os primeiros elementos filhos dos tipos dados(ex: td:first-child pega todos os primeiros td)\</li>
+	<li>:nth-child() -> pseudo-classe pode localizar elemento filho atraves da posição específica colocado no parêmetro. Pode colocar em uma posição odd :nth-child(odd) ou even :nth-child(even)</li>
+    </ul>
+    <p>
+	tipos de border:
+    </p>	
+    <ul>
+	<li>border-top-width;</br>
+border-right-width;</br>
+border-bottom-width;</br>
+border-left-width</br>
+para definir largura</li>
+	<li>border-top-style;</br>
+border-right-style;</br>
+border-bottom-style;</br>
+border-left-style;</br>
+para estilo</li>
+	<li>border-top-color;</br>
+border-right-color;</br>
+border-bottom-color;</br>
+border-left-color;</br>
+definir cor</li>
+    </ul>
 
     <p>
         O CSS permite melhorar a aparência das tabelas usando bordas,
@@ -369,8 +447,12 @@ th, td {
     </p>
 
     <h2>5.0 Sistemas de Layout</h2>
+    <p>
+	A diferença de elementos block-level e inline-level é que o block é executado pelo browser em uma nova linha, enquanto o inline é executado na mesma linha que foi colocado no código
+    </p>
 
     <h3>5.1 Tipos de posicionamento</h3>
+
 
     <ul>
         <li>static -> Posicionamento padrão que segue o fluxo natural de renderização da página HTML.</li>
@@ -399,7 +481,7 @@ input {
 </pre>
 
     <p>
-        O float foi muito usado para organizar formulários e layouts antigos.
+        O float foi muito usado para organizar formulários e layouts antigos. Permite você por elementos na direita e esquerda ao redor do HTML, mas hoje não é mais tão utilizado, pois foi ultrapassado pelos seus sucessores, flex layout e grid layout, como mostrado no exemplo acima ele pode ser usado em vários seletores como label, button, input. Overflow garante que o elemento mantenha sua altura e width e max-width servem para definir largura. 
     </p>
 
     <h3>5.3 Flexbox</h3>
@@ -412,12 +494,14 @@ input {
 </pre>
 
     <p>
-        O Flexbox facilita alinhamento horizontal e vertical de elementos. Ele é bem mais flexivel que o float layout.
+        O Flexbox facilita alinhamento horizontal e vertical de elementos. Ele é bem mais flexivel que o float layout. Esse layout pode ter arranjos verticais e arranjos horizontais que evitam o overflow, além de ter grande nível de manipulação vertical e horizontal de espaços entre elementos e poder alinhar espaço entre itens e outas coisas.
     </p>
     <p>
 	Flex containers:
     </p>
     <ul>
+	<li>display -> Define um elemento como um contêiner flexível com o valor
+flex.</li>
 	<li>flex-direction -> Especifica a direção em que os itens flexíveis são
 organizados em um contêiner flexível.</li>
 	<li>flex-wrap -> Especifica a direção em que os itens flexíveis são
@@ -456,7 +540,7 @@ elementos irmãos.</li>
 </pre>
 
     <p>
-        O Grid Layout organiza elementos em linhas e colunas, sendo ideal para layouts complexos. Ele é "two-dimensional" ,ou seja, evolve a posição dos elementos, em contraste o "one-dimensional" que é p Flexbox 
+        O Grid Layout organiza elementos em linhas e colunas juntas, sendo ideal para layouts complexos. Ele é "two-dimensional" ,ou seja, evolve a posição dos elementos, em contraste o "one-dimensional" que é o Flexbox que só pode merxer linha e coluna por vez. 
     </p>
 
     <p>
